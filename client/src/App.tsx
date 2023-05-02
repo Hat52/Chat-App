@@ -6,8 +6,14 @@ function App() {
 	socket.on('connect', () => {
 		console.log(`You have been connected by ID: ${socket.id}`);
 	});
-	socket.emit('test-message', 'Hello g this is a test message');
-	return <>Hello world</>;
+
+	const sendMessage = () => {
+		socket.emit('send-message', 'Hello from the other side');
+	};
+	socket.on('receive-message', (message) => {
+		console.log(message);
+	});
+	return <button onClick={sendMessage}>Send Hi</button>;
 }
 
 export default App;
