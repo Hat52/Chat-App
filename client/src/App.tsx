@@ -1,19 +1,11 @@
 import './App.css';
-import { io } from 'socket.io-client';
-
+import { Sidebar } from './components/';
 function App() {
-	const socket = io('http://localhost:5000');
-	socket.on('connect', () => {
-		console.log(`You have been connected by ID: ${socket.id}`);
-	});
-
-	const sendMessage = () => {
-		socket.emit('send-message', 'Hello from the other side');
-	};
-	socket.on('receive-message', (message) => {
-		console.log(message);
-	});
-	return <button onClick={sendMessage}>Send Hi</button>;
+	return (
+		<div className="flex h-screen">
+			<Sidebar />
+		</div>
+	);
 }
 
 export default App;
