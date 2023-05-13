@@ -58,10 +58,9 @@ export const MessageDummyData = [
 		time: '4:45 PM'
 	},
 	{
-		image: DemoPic,
 		name: 'Hamza Ali',
 		message: 'This is a new message',
-		newMessageCount: 1,
+		newMessageCount: 0,
 		time: '4:45 PM'
 	},
 	{
