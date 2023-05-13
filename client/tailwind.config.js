@@ -5,6 +5,9 @@ export default {
 		extend: {
 			colors: {
 				primary: '#111b21'
+			},
+			borderRadius: {
+				sm: '8px'
 			}
 		}
 	},
