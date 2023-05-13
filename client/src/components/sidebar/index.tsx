@@ -1,3 +1,9 @@
+import Header from '../Header';
+
 export default function Sidebar() {
-	return <div className="bg-primary w-[30%] h-full"></div>;
+	return (
+		<div>
+			<Header />
+		</div>
+	);
 }
