@@ -4,6 +4,7 @@ interface IMessagePreview {
 	message: string;
 	newMessageCount: number;
 	time: string;
+	onClick: () => void;
 }
 
 export default function MessagePreview({
@@ -11,10 +12,11 @@ export default function MessagePreview({
 	name,
 	message,
 	newMessageCount,
-	time
+	time,
+	onClick
 }: IMessagePreview) {
 	return (
-		<div className="flex flex-col gap-2 cursor-pointer">
+		<div className="flex flex-col gap-2 cursor-pointer" onClick={onClick}>
 			<div className="flex justify-between items-center border border-gray-200 h-[56px] w-full px-2">
 				<div className="flex gap-2 items-center">
 					{image ? (
