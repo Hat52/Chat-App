@@ -27,11 +27,15 @@ export default function MessageContainer({ name, avatar }: IMessageContainer) {
 						className="absolute left-2 top-1/2 transform -translate-y-1/2"
 					/>
 					<input
-						className="w-full h-[48px] px-5 bg-transparent"
+						className="w-full h-[48px] px-5 bg-transparent outline-0"
 						value=""
 						placeholder="Write a message..."
 						onChange={() => {}}
 					/>
+					<div className="flex absolute right-2 gap-2 top-1/2 transform -translate-y-1/2">
+						<img src={Emoji} className="cursor-pointer" />
+						<img src={Mic} className="cursor-pointer" />
+					</div>
 				</div>
 			</div>
 		</div>
