@@ -16,7 +16,7 @@ export default function MessageContainer({ name, avatar }: IMessageContainer) {
 						{name.charAt(0).toUpperCase()}
 					</div>
 				)}
-				<h1 className="font-semibold text-[28px] text-[#000000E4]">Hamza Ali</h1>
+				<h1 className="font-semibold text-[28px] text-[#000000E4]">{name}</h1>
 			</div>
 			<div className="w-full h-[10%] flex items-center px-5">
 				<MessageInput />
