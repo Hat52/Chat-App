@@ -1,6 +1,4 @@
-import Emoji from '../../assets/Emoji.svg';
-import Attachment from '../../assets/Attach.svg';
-import Mic from '../../assets/Mic.svg';
+import { MessageInput } from '../../components';
 
 interface IMessageContainer {
 	name: string;
@@ -21,22 +19,7 @@ export default function MessageContainer({ name, avatar }: IMessageContainer) {
 				<h1 className="font-semibold text-[28px] text-[#000000E4]">Hamza Ali</h1>
 			</div>
 			<div className="w-full h-[10%] flex items-center px-5">
-				<div className="relative w-full px-5 rounded-sm overflow-hidden bg-[#0000000A]">
-					<img
-						src={Attachment}
-						className="absolute left-2 top-1/2 transform -translate-y-1/2"
-					/>
-					<input
-						className="w-full h-[48px] px-5 bg-transparent outline-0"
-						value=""
-						placeholder="Write a message..."
-						onChange={() => {}}
-					/>
-					<div className="flex absolute right-2 gap-2 top-1/2 transform -translate-y-1/2">
-						<img src={Emoji} className="cursor-pointer" />
-						<img src={Mic} className="cursor-pointer" />
-					</div>
-				</div>
+				<MessageInput />
 			</div>
 		</div>
 	);
