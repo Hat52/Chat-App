@@ -18,6 +18,18 @@ export default function MessageContainer({ name, avatar }: IMessageContainer) {
 				)}
 				<h1 className="font-semibold text-[28px] text-[#000000E4]">{name}</h1>
 			</div>
+			<div className="flex h-[70%] px-5 flex-col py-2 overflow-y-scroll">
+				<div className="flex justify-left">
+					<p className="p-1 bg-[#EDF0F2] text-[#000000E4] min-w-[90px] rounded-[10px] max-w-max text-left px-2">
+						a
+					</p>
+				</div>
+				<div className="flex justify-end">
+					<p className="p-1 bg-[#62A1DD] text-white min-w-[90px] rounded-[10px] max-w-max text-left px-2">
+						a
+					</p>
+				</div>
+			</div>
 			<div className="w-full h-[10%] flex items-center px-5">
 				<MessageInput />
 			</div>
