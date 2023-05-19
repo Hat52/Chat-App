@@ -5,7 +5,7 @@ interface IMessageContainer {
 	avatar?: any;
 }
 
-const messages = [
+const messages: IMessage[] = [
 	{
 		from: 'me',
 		time: '9:45 PM',
@@ -41,6 +41,11 @@ const messages = [
 		time: '9:45 PM',
 		message:
 			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+	},
+	{
+		from: 'me',
+		time: '9:45 PM',
+		message: 'Okay'
 	}
 ];
 
@@ -65,19 +70,6 @@ export default function MessageContainer({ name, avatar }: IMessageContainer) {
 						</div>
 					);
 				})}
-
-				<div className="flex justify-end">
-					<p className="p-1 bg-[#62A1DD] text-white min-w-[90px] rounded-[10px] max-w-max text-left px-2">
-						<Message
-							from="me"
-							time="9:45 PM"
-							message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-					Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-					unknown printer took a galley of type and scrambled it to make a type specimen
-					book"
-						/>
-					</p>
-				</div>
 			</div>
 			<div className="w-full h-[10%] flex items-center px-5">
 				<MessageInput />
@@ -97,7 +89,7 @@ const Message = ({ from, message, time }: IMessage) => {
 		<div
 			className={`${
 				from === 'me' ? 'bg-[#62A1DD] text-white' : 'bg-[#EDF0F2] text-[#000000E4]'
-			}  p-2 min-w-[180px] max-w-[360px] rounded-[10px] text-left px-2`}>
+			}  p-2 min-w-[100px] max-w-[360px] rounded-[10px] text-left px-2`}>
 			<p className="text-[14px]">{message}</p>
 			<p className="text-end text-[12px]">{time}</p>
 		</div>
