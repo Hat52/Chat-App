@@ -7,7 +7,7 @@ export default function Sidebar({ handleSelect, data }: any) {
 				<h3 className="font-bold text-xl ">Chats</h3>
 			</div>
 
-			<div className="flex flex-col overflow-y-scroll overflow-x-hidden h-[90%] scrollbar-hide">
+			<div className="flex flex-col overflow-y-scroll overflow-x-hidden h-[90%]">
 				{data.map((messages: any, index: number) => (
 					<MessagePreview {...messages} onClick={() => handleSelect(index)} />
 				))}
