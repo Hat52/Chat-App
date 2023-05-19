@@ -5,6 +5,45 @@ interface IMessageContainer {
 	avatar?: any;
 }
 
+const messages = [
+	{
+		from: 'me',
+		time: '9:45 PM',
+		message:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+	},
+	{
+		from: 'other',
+		time: '9:45 PM',
+		message:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+	},
+	{
+		from: 'me',
+		time: '9:45 PM',
+		message:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+	},
+	{
+		from: 'me',
+		time: '9:45 PM',
+		message:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+	},
+	{
+		from: 'other',
+		time: '9:45 PM',
+		message:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+	},
+	{
+		from: 'me',
+		time: '9:45 PM',
+		message:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+	}
+];
+
 export default function MessageContainer({ name, avatar }: IMessageContainer) {
 	return (
 		<div className="relative flex flex-col justify-between h-full w-[77%]">
@@ -19,16 +58,14 @@ export default function MessageContainer({ name, avatar }: IMessageContainer) {
 				<h1 className="font-semibold text-[28px] text-[#000000E4]">{name}</h1>
 			</div>
 			<div className="flex h-[70%] px-5 flex-col py-2 overflow-y-scroll gap-2">
-				<div className="flex justify-left">
-					<Message
-						from="other"
-						time="9:45 PM"
-						message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-					Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-					unknown printer took a galley of type and scrambled it to make a type specimen
-					book"
-					/>
-				</div>
+				{messages.map(({ message, time, from }: IMessage) => {
+					return (
+						<div className={`flex ${from === 'me' ? 'justify-end' : 'justify-left'}`}>
+							<Message from={from} time={time} message={message} />
+						</div>
+					);
+				})}
+
 				<div className="flex justify-end">
 					<p className="p-1 bg-[#62A1DD] text-white min-w-[90px] rounded-[10px] max-w-max text-left px-2">
 						<Message
