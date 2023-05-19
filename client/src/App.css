@@ -1,9 +1,20 @@
-.scrollbar-hide::-webkit-scrollbar {
-	display: none;
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
 }
 
-/* For IE, Edge and Firefox */
-.scrollbar-hide {
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(237.87deg, #62a1dd 0%, #9dc1e8 100%);
+	border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(237.87deg, #62a1dd 0%, #f15a29 100%);
 }
