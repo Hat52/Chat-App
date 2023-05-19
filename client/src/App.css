@@ -16,5 +16,5 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(237.87deg, #62a1dd 0%, #f15a29 100%);
+	background: linear-gradient(237.87deg, #62a1dd 0%, #62a1dd 100%);
 }
