@@ -20,22 +20,25 @@ export default function MessageContainer({ name, avatar }: IMessageContainer) {
 			</div>
 			<div className="flex h-[70%] px-5 flex-col py-2 overflow-y-scroll gap-2">
 				<div className="flex justify-left">
-					<div className="bg-[#EDF0F2] text-[#000000E4] p-2 min-w-[180px] max-w-[360px] rounded-[10px] text-left px-2">
-						<p className="text-[14px]">
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-							when an unknown printer took a galley of type and scrambled it to make a type
-							specimen book
-						</p>
-						<p className="text-end text-[12px]">9:45 PM</p>
-					</div>
+					<Message
+						from="other"
+						time="9:45 PM"
+						message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+					Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+					unknown printer took a galley of type and scrambled it to make a type specimen
+					book"
+					/>
 				</div>
 				<div className="flex justify-end">
 					<p className="p-1 bg-[#62A1DD] text-white min-w-[90px] rounded-[10px] max-w-max text-left px-2">
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-						Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-						unknown printer took a galley of type and scrambled it to make a type specimen
-						book
+						<Message
+							from="me"
+							time="9:45 PM"
+							message="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+					Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+					unknown printer took a galley of type and scrambled it to make a type specimen
+					book"
+						/>
 					</p>
 				</div>
 			</div>
@@ -45,3 +48,21 @@ export default function MessageContainer({ name, avatar }: IMessageContainer) {
 		</div>
 	);
 }
+
+interface IMessage {
+	from: 'me' | 'other';
+	message: string;
+	time: string;
+}
+
+const Message = ({ from, message, time }: IMessage) => {
+	return (
+		<div
+			className={`${
+				from === 'me' ? 'bg-[#62A1DD] text-white' : 'bg-[#EDF0F2] text-[#000000E4]'
+			}  p-2 min-w-[180px] max-w-[360px] rounded-[10px] text-left px-2`}>
+			<p className="text-[14px]">{message}</p>
+			<p className="text-end text-[12px]">{time}</p>
+		</div>
+	);
+};
