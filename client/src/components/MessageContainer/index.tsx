@@ -3,6 +3,7 @@ import { MessageInput } from '../../components';
 interface IMessageContainer {
 	name: string;
 	avatar?: any;
+	handleMessageSend: (message: string) => void;
 }
 
 const messages: IMessage[] = [
@@ -49,7 +50,7 @@ const messages: IMessage[] = [
 	}
 ];
 
-export default function MessageContainer({ name, avatar }: IMessageContainer) {
+export default function MessageContainer({ name, avatar, handleMessageSend }: IMessageContainer) {
 	return (
 		<div className="relative flex flex-col justify-between h-full w-[77%]">
 			<div className="h-[20%] bg-[#F0F4F9] w-full px-5 flex justify-center items-center gap-5 drop-shadow-md">
@@ -72,7 +73,7 @@ export default function MessageContainer({ name, avatar }: IMessageContainer) {
 				})}
 			</div>
 			<div className="w-full h-[10%] flex items-center px-5">
-				<MessageInput />
+				<MessageInput onChange={handleMessageSend} />
 			</div>
 		</div>
 	);

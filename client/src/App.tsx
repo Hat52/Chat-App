@@ -23,7 +23,6 @@ function App() {
 		function onFooEvent(value: any) {
 			// setFooEvents(previous:any => [...previous, value]);
 		}
-		socket.on('send-message', 'hello there');
 
 		socket.on('connect', onConnect);
 		// socket.on('disconnect', onDisconnect);
@@ -36,11 +35,12 @@ function App() {
 		};
 	}, []);
 
+	const handleMessageSend = (message: string) => {
+		socket.emit('send-message', { message });
+	};
+
 	return (
 		<div className="flex h-screen justify-center items-center w-screen">
-			<p>
-				{isConnected}---{fooEvents}
-			</p>
 			<div className="h-[90%] w-[80%] border-2 border-[#61BAF1] rounded-sm shadow-lg overflow-hidden flex">
 				<Sidebar
 					handleSelect={(index: number) => {
@@ -51,6 +51,7 @@ function App() {
 				<MessageContainer
 					name={MessageDummyData[selectedMessage].name}
 					avatar={MessageDummyData[selectedMessage].image}
+					handleMessageSend={handleMessageSend}
 				/>
 			</div>
 		</div>
