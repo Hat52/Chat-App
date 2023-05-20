@@ -4,53 +4,15 @@ interface IMessageContainer {
 	name: string;
 	avatar?: any;
 	handleMessageSend: (message: string) => void;
+	messages: any;
 }
 
-const messages: IMessage[] = [
-	{
-		from: 'me',
-		time: '9:45 PM',
-		message:
-			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
-	},
-	{
-		from: 'other',
-		time: '9:45 PM',
-		message:
-			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
-	},
-	{
-		from: 'me',
-		time: '9:45 PM',
-		message:
-			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
-	},
-	{
-		from: 'me',
-		time: '9:45 PM',
-		message:
-			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
-	},
-	{
-		from: 'other',
-		time: '9:45 PM',
-		message:
-			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
-	},
-	{
-		from: 'me',
-		time: '9:45 PM',
-		message:
-			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
-	},
-	{
-		from: 'me',
-		time: '9:45 PM',
-		message: 'Okay'
-	}
-];
-
-export default function MessageContainer({ name, avatar, handleMessageSend }: IMessageContainer) {
+export default function MessageContainer({
+	name,
+	avatar,
+	handleMessageSend,
+	messages
+}: IMessageContainer) {
 	return (
 		<div className="relative flex flex-col justify-between h-full w-[77%]">
 			<div className="h-[20%] bg-[#F0F4F9] w-full px-5 flex justify-center items-center gap-5 drop-shadow-md">

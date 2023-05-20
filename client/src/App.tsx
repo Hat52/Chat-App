@@ -3,12 +3,39 @@ import './App.css';
 import { Sidebar, MessageContainer } from './components';
 import { MessageDummyData } from './constants';
 import { socket } from './socket';
+import DemoPic from './assets/pic-demo.png';
+
+interface IMessage {
+	from: string;
+	message: string;
+
+	time: '9:45 PM';
+}
+
+interface IMessages {
+	name: string;
+	image?: any;
+	messages: IMessage[];
+}
 
 function App() {
 	const [selectedMessage, setSelectedMessage] = useState(0);
 	const [isConnected, setIsConnected] = useState(socket.connected);
 	const [fooEvents, setFooEvents] = useState([]);
-	console.log(socket.connected);
+	const [currentMessage, setCurrentMessage] = useState<IMessages[]>([
+		{
+			image: DemoPic,
+			name: 'Hamza Ali Sender',
+			messages: [{ time: '9:45 PM', message: 'Hello Sender', from: 'other' }]
+		},
+		{
+			name: 'Tom',
+			messages: [
+				{ time: '9:45 PM', message: 'Hello Hamza How are you', from: 'other' },
+				{ time: '9:45 PM', message: 'I am good, How are you tom', from: 'me' }
+			]
+		}
+	]);
 
 	useEffect(() => {
 		function onConnect() {
@@ -37,6 +64,14 @@ function App() {
 
 	const handleMessageSend = (message: string) => {
 		socket.emit('send-message', { message });
+		// setCurrentMessage((prevArray) => [
+		// 	...prevArray,
+		//
+		// ]);
+
+		const dummyCurrentMessage = [...currentMessage];
+		dummyCurrentMessage[selectedMessage].messages.push({ message, from: 'me', time: '9:45 PM' });
+		setCurrentMessage([...dummyCurrentMessage]);
 	};
 
 	return (
@@ -46,12 +81,13 @@ function App() {
 					handleSelect={(index: number) => {
 						setSelectedMessage(index);
 					}}
-					data={MessageDummyData}
+					data={currentMessage}
 				/>
 				<MessageContainer
-					name={MessageDummyData[selectedMessage].name}
-					avatar={MessageDummyData[selectedMessage].image}
+					name={currentMessage[selectedMessage].name}
+					avatar={currentMessage[selectedMessage].image}
 					handleMessageSend={handleMessageSend}
+					messages={currentMessage[selectedMessage].messages}
 				/>
 			</div>
 		</div>
