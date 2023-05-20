@@ -35,11 +35,23 @@ function App() {
 	]);
 
 	const handleMessageSend = (message: string) => {
-		socket.emit('send-message', { message });
+		socket.emit('send-message', { message, id: selectedMessage });
 		const dummyCurrentMessage = [...currentMessage];
 		dummyCurrentMessage[selectedMessage].messages.push({ message, from: 'me', time: '9:45 PM' });
 		setCurrentMessage([...dummyCurrentMessage]);
 	};
+
+	socket.on('receive-message', (receivedMessage: any) => {
+		const dummyCurrentMessage = [...currentMessage];
+		console.log(dummyCurrentMessage);
+		dummyCurrentMessage[receivedMessage.id].messages.push({
+			message: receivedMessage.message,
+			from: 'other',
+			time: '9:45 PM'
+		});
+		console.log(dummyCurrentMessage);
+		setCurrentMessage([...dummyCurrentMessage]);
+	});
 
 	return (
 		<div className="flex h-screen justify-center items-center w-screen">
