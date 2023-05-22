@@ -11,6 +11,11 @@ const io = socket(server, {
 	}
 });
 
+app.post('/register', (req, res) => {
+	console.log(req, res);
+	res.send({ message: 'I have been hit' });
+});
+
 io.on('connection', (socket) => {
 	socket.on('send-message', (message) => {
 		console.log(message);
