@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { Sidebar, MessageContainer } from './components';
 import { socket } from './socket';
@@ -40,18 +40,19 @@ function App() {
 		dummyCurrentMessage[selectedMessage].messages.push({ message, from: 'me', time: '9:45 PM' });
 		setCurrentMessage([...dummyCurrentMessage]);
 	};
-
-	socket.on('receive-message', (receivedMessage: any) => {
-		const dummyCurrentMessage = [...currentMessage];
-		console.log(dummyCurrentMessage);
-		dummyCurrentMessage[receivedMessage.id].messages.push({
-			message: receivedMessage.message,
-			from: 'other',
-			time: '9:45 PM'
+	useEffect(() => {
+		socket.on('receive-message', (receivedMessage: any) => {
+			const dummyCurrentMessage = [...currentMessage];
+			console.log(dummyCurrentMessage);
+			dummyCurrentMessage[receivedMessage.id].messages.push({
+				message: receivedMessage.message,
+				from: 'other',
+				time: '9:45 PM'
+			});
+			console.log(dummyCurrentMessage);
+			setCurrentMessage([...dummyCurrentMessage]);
 		});
-		console.log(dummyCurrentMessage);
-		setCurrentMessage([...dummyCurrentMessage]);
-	});
+	}, [socket]);
 
 	return (
 		<div className="flex h-screen justify-center items-center w-screen">
