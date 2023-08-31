@@ -1,8 +1,15 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { Sidebar, MessageContainer } from './components';
-import { socket } from './socket';
+// import { socket } from './socket';
 import DemoPic from './assets/pic-demo.png';
+
+import { io } from 'socket.io-client';
+console.log('her');
+// "undefined" means the URL will be computed from the `window.location` object
+const URL = 'http://localhost:5000';
+
+export const socket = io(URL);
 
 interface IMessage {
 	from: string;
@@ -43,15 +50,16 @@ function App() {
 	useEffect(() => {
 		socket.on('receive-message', (receivedMessage: any) => {
 			const dummyCurrentMessage = [...currentMessage];
-			console.log(dummyCurrentMessage);
 			dummyCurrentMessage[receivedMessage.id].messages.push({
 				message: receivedMessage.message,
 				from: 'other',
 				time: '9:45 PM'
 			});
-			console.log(dummyCurrentMessage);
 			setCurrentMessage([...dummyCurrentMessage]);
 		});
+		return () => {
+			socket.off('receive-message');
+		};
 	}, [socket]);
 
 	return (

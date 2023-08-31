@@ -7,18 +7,16 @@ const app = express();
 const server = http.createServer(app);
 const io = socket(server, {
 	cors: {
-		origin: ['http://127.0.0.1:5173']
+		origin: ['http://localhost:5173']
 	}
 });
 
 app.post('/register', (req, res) => {
-	console.log(req, res);
 	res.send({ message: 'I have been hit' });
 });
 
 io.on('connection', (socket) => {
 	socket.on('send-message', (message) => {
-		console.log(message);
 		socket.broadcast.emit('receive-message', message);
 	});
 });
