@@ -49,7 +49,6 @@ function App() {
 	};
 	useEffect(() => {
 		socket.on('receive-message', (receivedMessage: any) => {
-			console.log(receivedMessage);
 			const dummyCurrentMessage = [...currentMessage];
 			dummyCurrentMessage[receivedMessage.id].messages.push({
 				message: receivedMessage.message,
@@ -69,7 +68,7 @@ function App() {
 
 	return (
 		<div className="flex h-screen justify-center items-center w-screen">
-			<button onClick={handleJoinRoom}>Join room</button>
+			{/* <button onClick={handleJoinRoom}>Join room</button> */}
 			<div className="h-[90%] w-[80%] border-2 border-[#61BAF1] rounded-sm shadow-lg overflow-hidden flex">
 				<Sidebar
 					handleSelect={(index: number) => {
