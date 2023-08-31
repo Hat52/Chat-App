@@ -16,8 +16,14 @@ app.post('/register', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-	socket.on('send-message', (message) => {
-		socket.broadcast.emit('receive-message', message);
+	// Join or create a room
+
+	socket.on('join-room', (room) => {
+		socket.join(room);
+	});
+
+	socket.on('send-message', (data) => {
+		socket.to(data.room).emit('receive-message', data);
 	});
 });
 

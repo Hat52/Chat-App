@@ -42,13 +42,14 @@ function App() {
 	]);
 
 	const handleMessageSend = (message: string) => {
-		socket.emit('send-message', { message, id: selectedMessage });
+		socket.emit('send-message', { message, id: selectedMessage, room: 1234 });
 		const dummyCurrentMessage = [...currentMessage];
 		dummyCurrentMessage[selectedMessage].messages.push({ message, from: 'me', time: '9:45 PM' });
 		setCurrentMessage([...dummyCurrentMessage]);
 	};
 	useEffect(() => {
 		socket.on('receive-message', (receivedMessage: any) => {
+			console.log(receivedMessage);
 			const dummyCurrentMessage = [...currentMessage];
 			dummyCurrentMessage[receivedMessage.id].messages.push({
 				message: receivedMessage.message,
@@ -62,8 +63,13 @@ function App() {
 		};
 	}, [socket]);
 
+	const handleJoinRoom = () => {
+		socket.emit('join-room', 1234);
+	};
+
 	return (
 		<div className="flex h-screen justify-center items-center w-screen">
+			<button onClick={handleJoinRoom}>Join room</button>
 			<div className="h-[90%] w-[80%] border-2 border-[#61BAF1] rounded-sm shadow-lg overflow-hidden flex">
 				<Sidebar
 					handleSelect={(index: number) => {
